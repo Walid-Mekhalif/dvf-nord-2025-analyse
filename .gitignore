@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+.idea/
+Solo_DVF_France_2025/*.txt
+Solo_DVF_France_2025/dvf_*.csv

@@ -8,8 +8,8 @@ from sqlalchemy.engine import URL
 
 load_dotenv()
 
-dossier = Path(__file__).parent
-df = pd.read_csv(dossier / "dvf_59_final.csv", parse_dates=["Date mutation"])
+dossier_data = Path(__file__).parent.parent / "data"
+df = pd.read_csv(dossier_data / "dvf_59_final.csv", parse_dates=["Date mutation"])
 
 df.columns = (
     df.columns.str.lower()

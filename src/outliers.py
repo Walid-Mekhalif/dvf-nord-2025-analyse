@@ -1,8 +1,8 @@
 from pathlib import Path
 import pandas as pd
 
-dossier = Path(__file__).parent
-df = pd.read_csv(dossier / "dvf_59_propre.csv", parse_dates=["Date mutation"])
+dossier_data = Path(__file__).parent.parent / "data"
+df = pd.read_csv(dossier_data / "dvf_59_propre.csv", parse_dates=["Date mutation"])
 
 avant = len(df)
 
@@ -14,4 +14,4 @@ print(f"Lignes supprimées : {avant - len(df)} ({(avant - len(df)) / avant:.1%})
 print(df.shape)
 print(df.groupby("Type local")["prix_m2"].describe())
 
-df.to_csv(dossier / "dvf_59_final.csv", index=False)
+df.to_csv(dossier_data / "dvf_59_final.csv", index=False)

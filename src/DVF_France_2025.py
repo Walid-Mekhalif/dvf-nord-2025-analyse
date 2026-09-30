@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-dossier = Path(__file__).parent
+dossier_data = Path(__file__).parent.parent / "data"
 colonnes = [
     "Date mutation", "Nature mutation", "Valeur fonciere",
     "No voie", "Type de voie", "Voie",
@@ -11,7 +11,7 @@ colonnes = [
 ]
 
 df = pd.read_csv(
-    dossier / "ValeursFoncieres-2025.txt",
+    dossier_data / "ValeursFoncieres-2025.txt",
     sep="|", decimal=",", usecols=colonnes, low_memory=False,
     dtype={"Code departement": str},
 )
@@ -25,4 +25,4 @@ print(df["Type local"].value_counts(dropna=False))
 print(df.isna().sum().sort_values(ascending=False))
 
 # Sauvegarde d'un fichier léger pour la suite
-df.to_csv(dossier / "dvf_59_brut.csv", index=False)
+df.to_csv(dossier_data / "dvf_59_brut.csv", index=False)

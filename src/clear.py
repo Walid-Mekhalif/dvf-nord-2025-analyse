@@ -1,8 +1,8 @@
 from pathlib import Path
 import pandas as pd
 
-dossier = Path(__file__).parent
-df = pd.read_csv(dossier / "dvf_59_brut.csv", low_memory=False)
+dossier_data = Path(__file__).parent.parent / "data"
+df = pd.read_csv(dossier_data / "dvf_59_brut.csv", low_memory=False)
 
 # 1. Ventes classiques de maisons et appartements
 df = df[df["Nature mutation"] == "Vente"]
@@ -27,4 +27,4 @@ print(df.shape)
 print(df["Type local"].value_counts())
 print(df["prix_m2"].describe())
 
-df.to_csv(dossier / "dvf_59_propre.csv", index=False)
+df.to_csv(dossier_data / "dvf_59_propre.csv", index=False)

@@ -11,7 +11,6 @@ load_dotenv()
 dossier = Path(__file__).parent
 df = pd.read_csv(dossier / "dvf_59_final.csv", parse_dates=["Date mutation"])
 
-# Noms de colonnes plus simples pour SQL
 df.columns = (
     df.columns.str.lower()
     .str.replace(" ", "_")
@@ -20,11 +19,11 @@ df.columns = (
 
 url = URL.create(
     "postgresql+psycopg",
-    username="postgres",
+    username=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD"),
-    host="localhost",
-    port=5432,
-    database="dvf",
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT")),
+    database=os.getenv("DB_NAME"),
 )
 engine = create_engine(url)
 
